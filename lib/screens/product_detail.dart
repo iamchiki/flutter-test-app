@@ -15,7 +15,7 @@ class ProductDetail extends StatelessWidget {
     final description = routArgs['description'];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Detail'),
+        title: Text('Product Detail changes'),
       ),
       body: Align(
         child: Container(
