@@ -33,28 +33,17 @@ class ProductDetail extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                // color: Colors.black,
                 width: 350,
-                // height: 300,
                 child: Card(
                   child: Container(
                     child: Column(
                       children: [
-                        // Expanded(
-                        //   child:
                         Image.network(
                           imgUrl,
                           height: 250,
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
-                        // Image(
-                        //   image: NetworkImage(imgUrl),
-                        //   width: 350,
-                        //   height: 150,
-                        // ),
-                        // flex: 6,
-                        // ),
                         Container(
                           child: Text(
                             productTitle!,
@@ -108,8 +97,6 @@ class ProductDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // padding: EdgeInsets.all(20),
-                    // width: double.infinity,
                   ),
                   color: Colors.blue[100],
                   elevation: 10,
@@ -117,16 +104,12 @@ class ProductDetail extends StatelessWidget {
                 margin: EdgeInsets.only(top: 30),
               ),
               Container(
-                // color: Colors.black,
                 width: 350,
-                // height: 300,
                 child: Card(
                   child: Container(
                     child: Column(
                       children: [
                         Container(
-                          // color: Colors.blue[500],
-                          // padding: EdgeInsets.all(20),
                           child: Row(
                             children: [
                               Expanded(
@@ -154,13 +137,10 @@ class ProductDetail extends StatelessWidget {
                             ],
                           ),
                           decoration: BoxDecoration(
-                            // border: Border.all(color: Colors.black),
                             color: Colors.blue[300],
                           ),
                         ),
                         Container(
-                          // color: Colors.blue[500],
-                          // padding: EdgeInsets.all(20),
                           child: Row(
                             children: [
                               Expanded(
@@ -174,7 +154,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       right: BorderSide(
                                         color: Colors.white,
@@ -200,7 +179,6 @@ class ProductDetail extends StatelessWidget {
                                         fontSize: 17,
                                       )),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       top: BorderSide(
                                         color: Colors.white,
@@ -215,13 +193,9 @@ class ProductDetail extends StatelessWidget {
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              // border: Border.all(color: Colors.black),
-                              ),
+                          decoration: BoxDecoration(),
                         ),
                         Container(
-                          // color: Colors.blue[500],
-                          // padding: EdgeInsets.all(20),
                           child: Row(
                             children: [
                               Expanded(
@@ -235,7 +209,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       right: BorderSide(
                                         color: Colors.white,
@@ -263,7 +236,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       top: BorderSide(
                                         color: Colors.white,
@@ -278,13 +250,9 @@ class ProductDetail extends StatelessWidget {
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              // border: Border.all(color: Colors.black),
-                              ),
+                          decoration: BoxDecoration(),
                         ),
                         Container(
-                          // color: Colors.blue[500],
-                          // padding: EdgeInsets.all(20),
                           child: Row(
                             children: [
                               Expanded(
@@ -298,7 +266,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       right: BorderSide(
                                         color: Colors.white,
@@ -326,7 +293,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       top: BorderSide(
                                         color: Colors.white,
@@ -341,13 +307,9 @@ class ProductDetail extends StatelessWidget {
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              // border: Border.all(color: Colors.black),
-                              ),
+                          decoration: BoxDecoration(),
                         ),
                         Container(
-                          // color: Colors.blue[500],
-                          // padding: EdgeInsets.all(20),
                           child: Row(
                             children: [
                               Expanded(
@@ -361,7 +323,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       right: BorderSide(
                                         color: Colors.white,
@@ -389,7 +350,6 @@ class ProductDetail extends StatelessWidget {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    // border: Border.all(color: Colors.black),
                                     border: Border(
                                       top: BorderSide(
                                         color: Colors.white,
@@ -404,35 +364,16 @@ class ProductDetail extends StatelessWidget {
                               ),
                             ],
                           ),
-                          decoration: BoxDecoration(
-                              // border: Border.all(color: Colors.black),
-                              ),
+                          decoration: BoxDecoration(),
                         ),
                       ],
                     ),
-                    // padding: EdgeInsets.all(20),
                   ),
                   color: Colors.blue[100],
                   elevation: 10,
                 ),
                 margin: EdgeInsets.only(top: 30, bottom: 30),
-                // padding: EdgeInsets.all(0),
-                // decoration: BoxDecoration(
-                //   border: Border.all(color: Colors.black),
-                // ),
               ),
-              // ElevatedButton(
-              //   style: ElevatedButton.styleFrom(
-              //       textStyle: TextStyle(fontSize: 20)),
-              //   onPressed: () {
-              //     Navigator.of(context).pushNamed(UpdateProduct.routeName,
-              //         arguments: {
-              //           'title': productTitle,
-              //           'description': description
-              //         });
-              //   },
-              //   child: Text('Update'),
-              // ),
             ],
           ),
         ),

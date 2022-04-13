@@ -23,8 +23,6 @@ class _ProductListState extends State<ProductList> {
   List<Product> products = [];
   List<Product> productsList = [];
   Future<List<Product>> fetchAllProducts() async {
-    // var url = Uri.parse('https://dummyjson.com/products');
-    // var url = Uri.parse('https://dummyjson.com/products?limit=5&skip=$pageNo');
     var url =
         Uri.parse('https://dummyjson.com/products?limit=5&skip=$currentPage');
     try {
@@ -35,30 +33,12 @@ class _ProductListState extends State<ProductList> {
       for (var item in jsonResponse['products']) {
         Product product = Product(item['title'], item['description'],
             item['brand'], item['category'], item['images']);
-        // Product product = Product(
-        //     item['title'],
-        //     item['description'],
-        //     item['brand'],
-        //     item['category'],
-        //     item['price'],
-        //     item['rating'],
-        //     item['images']);
 
         products.add(product);
       }
-      // productsList.addAll(products);
-      // productsList = [...productsList, ...products];
-      // products = jsonResponse['products'];
-      // currentPage += 5;
-      // if (currentPage > 0) {
-      //   setState(() {});
-      // }
-      // print(jsonResponse['products']);
     } catch (e) {
       throw (e);
     }
-    print('length');
-    print(products.length);
     return products;
     // return productsList;
   }
@@ -76,31 +56,17 @@ class _ProductListState extends State<ProductList> {
       for (var item in jsonResponse['products']) {
         Product product = Product(item['title'], item['description'],
             item['brand'], item['category'], item['images']);
-        // Product product = Product(
-        //     item['title'],
-        //     item['description'],
-        //     item['brand'],
-        //     item['category'],
-        //     item['price'],
-        //     item['rating'],
-        //     item['images']);
 
-        // products.add(product);
         productsList.add(product);
       }
-      print('product length fetch');
-      print(products.length);
     } catch (e) {
       throw (e);
     }
-    // setState(() {});
-    // return products;
+
     return productsList;
   }
 
   void _inputChange(String text) async {
-    print('input change handler');
-    print(text);
     List<Product> result = await fetchProductsByQuery(text);
     setState(() {
       inputText = text;
@@ -110,10 +76,6 @@ class _ProductListState extends State<ProductList> {
 
   @override
   Widget build(BuildContext context) {
-    print('input');
-    print(inputText);
-    print('products');
-    print(products.length);
     return Scaffold(
         appBar: AppBar(
           title: SearchField(_inputChange),
@@ -124,11 +86,6 @@ class _ProductListState extends State<ProductList> {
           child: FutureBuilder(
             future:
                 currentPage == 0 && inputText == '' ? fetchAllProducts() : null,
-            // currentPage == 0 && inputText == ''
-            //     ? fetchAllProducts()
-            //     : (inputText != ''
-            //         ? fetchProductsByQuery(inputText)
-            //         : null),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               print(snapshot);
 
@@ -160,42 +117,21 @@ class _ProductListState extends State<ProductList> {
                   enablePullUp: true,
                   onLoading: () async {
                     currentPage += 5;
-                    // final result = await fetchAllProducts();
                     await fetchAllProducts();
                     refreshController.loadComplete();
                     setState(() {});
-                    print('page end');
-                    print(currentPage);
                   },
                   child: ListView.separated(
                     padding: const EdgeInsets.all(8),
                     itemCount: snapshot.data.length,
                     // itemCount: 0,
                     itemBuilder: (BuildContext context, int index) {
-                      // return ListTile(
-                      //   title: Text(snapshot.data[index].title),
-                      // );
                       return ProductCard(snapshot.data[index]);
-                      // return ProductCard(snapshot.data[index].title);
                     },
                     separatorBuilder: (BuildContext context, int index) =>
                         const Divider(),
                   ),
                 );
-                // return ListView.separated(
-                //   padding: const EdgeInsets.all(8),
-                //   itemCount: snapshot.data.length,
-                //   // itemCount: 0,
-                //   itemBuilder: (BuildContext context, int index) {
-                //     // return ListTile(
-                //     //   title: Text(snapshot.data[index].title),
-                //     // );
-                //     return ProductCard(snapshot.data[index]);
-                //     // return ProductCard(snapshot.data[index].title);
-                //   },
-                //   separatorBuilder: (BuildContext context, int index) =>
-                //       const Divider(),
-                // );
               }
             },
           ),
@@ -203,55 +139,3 @@ class _ProductListState extends State<ProductList> {
         ));
   }
 }
-
-// class ProductList extends StatelessWidget {
-//   static const routeName = '/product_list';
-//   final List<String> entries = <String>[
-//     'A',
-//     'B',
-//     'C',
-//   ];
-//   final List<int> colorCodes = <int>[600, 500, 100];
-
-//   List<dynamic> products = [];
-
-//   void fetchAllProducts() async {
-//     var url = Uri.parse('https://dummyjson.com/products');
-//     try {
-//       var response = await http.get(url);
-//       var jsonResponse =
-//           convert.jsonDecode(response.body) as Map<String, dynamic>;
-//       // print(jsonResponse);
-//       products = jsonResponse['products'];
-//       print(products);
-//     } catch (e) {
-//       throw (e);
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     fetchAllProducts();
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Product List')),
-//       drawer: MainDrawer(),
-//       body: ListView.separated(
-//         padding: const EdgeInsets.all(8),
-//         itemCount: entries.length,
-//         // itemCount: products.length,
-//         itemBuilder: (BuildContext context, int index) {
-//           return ProductCard();
-//           // return Container(
-//           //   height: 50,
-//           //   color: Colors.blue[100],
-//           //   child: Center(child: Text('Entry ${entries[index]}')),
-//           // );
-//         },
-//         separatorBuilder: (BuildContext context, int index) => const Divider(),
-//       ),
-//       // body: Center(
-//       //   child: ProductCard(),
-//       // ),
-//     );
-//   }
-// }
