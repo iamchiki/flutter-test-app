@@ -14,7 +14,10 @@ class _AddProductState extends State<AddProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add product')),
+      appBar: AppBar(
+        title: Text('Add product'),
+        toolbarHeight: 70,
+      ),
       drawer: MainDrawer(),
       body: Align(
         child: Container(

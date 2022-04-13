@@ -17,30 +17,43 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   int currentPage = 0;
+  String inputText = '';
   final RefreshController refreshController =
       RefreshController(initialRefresh: false);
   List<Product> products = [];
   List<Product> productsList = [];
   Future<List<Product>> fetchAllProducts() async {
     // var url = Uri.parse('https://dummyjson.com/products');
+    // var url = Uri.parse('https://dummyjson.com/products?limit=5&skip=$pageNo');
     var url =
         Uri.parse('https://dummyjson.com/products?limit=5&skip=$currentPage');
     try {
       var response = await http.get(url);
       var jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
-      // print(jsonResponse);
-      // jsonResponse['products'].forEach((product) => print(product.title));
+
       for (var item in jsonResponse['products']) {
-        Product product = Product(item['title'], item['description']);
+        Product product = Product(item['title'], item['description'],
+            item['brand'], item['category'], item['images']);
+        // Product product = Product(
+        //     item['title'],
+        //     item['description'],
+        //     item['brand'],
+        //     item['category'],
+        //     item['price'],
+        //     item['rating'],
+        //     item['images']);
+
         products.add(product);
       }
       // productsList.addAll(products);
       // productsList = [...productsList, ...products];
       // products = jsonResponse['products'];
       // currentPage += 5;
-      // setState(() {});
-      print(jsonResponse['products']);
+      // if (currentPage > 0) {
+      //   setState(() {});
+      // }
+      // print(jsonResponse['products']);
     } catch (e) {
       throw (e);
     }
@@ -60,42 +73,57 @@ class _ProductListState extends State<ProductList> {
           convert.jsonDecode(response.body) as Map<String, dynamic>;
 
       for (var item in jsonResponse['products']) {
-        Product product = Product(item['title'], item['description']);
+        Product product = Product(item['title'], item['description'],
+            item['brand'], item['category'], item['images']);
+        // Product product = Product(
+        //     item['title'],
+        //     item['description'],
+        //     item['brand'],
+        //     item['category'],
+        //     item['price'],
+        //     item['rating'],
+        //     item['images']);
+
         products.add(product);
+        print('product length fetch');
+        print(products.length);
       }
     } catch (e) {
       throw (e);
     }
-    setState(() {});
+    // setState(() {});
     return products;
   }
 
   void _inputChange(String text) {
     print('input change handler');
     print(text);
-    fetchProductsByQuery(text);
-    // setState(() {});
+    inputText = text;
+    // fetchProductsByQuery(text);
+    setState(() {
+      inputText = text;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    print('input');
+    print(inputText);
     return Scaffold(
         appBar: AppBar(
           title: SearchField(_inputChange),
+          toolbarHeight: 70,
         ),
-        // appBar: AppBar(
-        //   title: Container(
-        //     child: TextField(
-        //       style: TextStyle(backgroundColor: Colors.white),
-        //     ),
-        //     color: Colors.white,
-        //     height: 20,
-        //   ),
-        // ),
         drawer: MainDrawer(),
         body: Container(
           child: FutureBuilder(
-            future: fetchAllProducts(),
+            future:
+                // currentPage == 0 && inputText == '' ? fetchAllProducts() : null,
+                currentPage == 0 && inputText == ''
+                    ? fetchAllProducts()
+                    : (inputText != ''
+                        ? fetchProductsByQuery(inputText)
+                        : null),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               print(snapshot);
               if (snapshot.data == null) {
@@ -110,11 +138,13 @@ class _ProductListState extends State<ProductList> {
                   controller: refreshController,
                   enablePullUp: true,
                   onLoading: () async {
-                    final result = await fetchAllProducts();
+                    currentPage += 5;
+                    // final result = await fetchAllProducts();
+                    await fetchAllProducts();
                     refreshController.loadComplete();
-                    setState(() {
-                      currentPage += 5;
-                    });
+                    setState(() {});
+                    print('page end');
+                    print(currentPage);
                   },
                   child: ListView.separated(
                     padding: const EdgeInsets.all(8),

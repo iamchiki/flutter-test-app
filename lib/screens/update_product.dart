@@ -18,7 +18,10 @@ class _UpdateProductState extends State<UpdateProduct> {
     final productTitle = routArgs['title'];
     final description = routArgs['description'];
     return Scaffold(
-      appBar: AppBar(title: Text('Update product')),
+      appBar: AppBar(
+        title: Text('Update product'),
+        toolbarHeight: 70,
+      ),
       drawer: MainDrawer(),
       body: Align(
         child: Container(
