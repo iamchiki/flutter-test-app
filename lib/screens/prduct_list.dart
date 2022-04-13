@@ -65,7 +65,8 @@ class _ProductListState extends State<ProductList> {
 
   // fetch products based on search input texts
   Future<List<Product>> fetchProductsByQuery(String query) async {
-    products = [];
+    // products = [];
+    List<Product> productsList = [];
     var url = Uri.parse('https://dummyjson.com/products/search?q=$query');
     try {
       var response = await http.get(url);
@@ -84,24 +85,26 @@ class _ProductListState extends State<ProductList> {
         //     item['rating'],
         //     item['images']);
 
-        products.add(product);
-        print('product length fetch');
-        print(products.length);
+        // products.add(product);
+        productsList.add(product);
       }
+      print('product length fetch');
+      print(products.length);
     } catch (e) {
       throw (e);
     }
     // setState(() {});
-    return products;
+    // return products;
+    return productsList;
   }
 
-  void _inputChange(String text) {
+  void _inputChange(String text) async {
     print('input change handler');
     print(text);
-    inputText = text;
-    // fetchProductsByQuery(text);
+    List<Product> result = await fetchProductsByQuery(text);
     setState(() {
       inputText = text;
+      products = result;
     });
   }
 
@@ -109,6 +112,8 @@ class _ProductListState extends State<ProductList> {
   Widget build(BuildContext context) {
     print('input');
     print(inputText);
+    print('products');
+    print(products.length);
     return Scaffold(
         appBar: AppBar(
           title: SearchField(_inputChange),
@@ -118,14 +123,30 @@ class _ProductListState extends State<ProductList> {
         body: Container(
           child: FutureBuilder(
             future:
-                // currentPage == 0 && inputText == '' ? fetchAllProducts() : null,
-                currentPage == 0 && inputText == ''
-                    ? fetchAllProducts()
-                    : (inputText != ''
-                        ? fetchProductsByQuery(inputText)
-                        : null),
+                currentPage == 0 && inputText == '' ? fetchAllProducts() : null,
+            // currentPage == 0 && inputText == ''
+            //     ? fetchAllProducts()
+            //     : (inputText != ''
+            //         ? fetchProductsByQuery(inputText)
+            //         : null),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               print(snapshot);
+
+              if (inputText != '') {
+                return Container(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(8),
+                    itemCount: products.length,
+                    // itemCount: 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ProductCard(products[index]);
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(),
+                  ),
+                );
+              }
+
               if (snapshot.data == null) {
                 return Container(
                   child: Center(
