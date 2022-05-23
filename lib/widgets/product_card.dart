@@ -27,12 +27,13 @@ class ProductCard extends StatelessWidget {
           child: Center(
             child: Text(
               product.title,
-              style: TextStyle(
-                color: Colors.blue[800],
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1,
-              ),
+              style: Theme.of(context).textTheme.bodyText2,
+              // style: TextStyle(
+              //   color: Colors.blue[800],
+              //   fontSize: 20,
+              //   fontWeight: FontWeight.w700,
+              //   letterSpacing: 1,
+              // ),
             ),
           ),
         ),
@@ -40,7 +41,8 @@ class ProductCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        color: Colors.blue[100],
+        // color: Colors.blue[100],
+        color: Theme.of(context).primaryColorLight,
       ),
       onTap: () => selectProduct(context),
     );

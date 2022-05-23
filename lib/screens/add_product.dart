@@ -17,6 +17,7 @@ class _AddProductState extends State<AddProduct> {
       appBar: AppBar(
         title: Text('Add product'),
         toolbarHeight: 70,
+        // backgroundColor: Theme.of(context).backgroundColor,
       ),
       drawer: MainDrawer(),
       body: Align(

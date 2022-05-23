@@ -98,7 +98,8 @@ class ProductDetail extends StatelessWidget {
                       ],
                     ),
                   ),
-                  color: Colors.blue[100],
+                  // color: Colors.blue[100],
+                  color: Theme.of(context).primaryColorLight,
                   elevation: 10,
                 ),
                 margin: EdgeInsets.only(top: 30),
@@ -116,11 +117,8 @@ class ProductDetail extends StatelessWidget {
                                 child: Container(
                                   child: Text(
                                     'Product Detail',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
                                   ),
                                   decoration: BoxDecoration(
                                     border: Border(
@@ -137,7 +135,8 @@ class ProductDetail extends StatelessWidget {
                             ],
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.blue[300],
+                            color: Theme.of(context).primaryColorDark,
+                            // color: Colors.blue[300],
                           ),
                         ),
                         Container(
@@ -148,7 +147,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     'Brand',
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -175,7 +174,8 @@ class ProductDetail extends StatelessWidget {
                                 child: Container(
                                   child: Text(brand,
                                       style: TextStyle(
-                                        color: Colors.blue[800],
+                                        color:
+                                            Theme.of(context).primaryColorDark,
                                         fontSize: 17,
                                       )),
                                   decoration: BoxDecoration(
@@ -203,7 +203,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     'Category',
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -231,7 +231,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     category,
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 17,
                                     ),
                                   ),
@@ -260,7 +260,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     'Price',
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -288,7 +288,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     price,
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 17,
                                     ),
                                   ),
@@ -317,7 +317,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     'Rating',
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -345,7 +345,7 @@ class ProductDetail extends StatelessWidget {
                                   child: Text(
                                     rating,
                                     style: TextStyle(
-                                      color: Colors.blue[800],
+                                      color: Theme.of(context).primaryColorDark,
                                       fontSize: 17,
                                     ),
                                   ),
@@ -369,7 +369,7 @@ class ProductDetail extends StatelessWidget {
                       ],
                     ),
                   ),
-                  color: Colors.blue[100],
+                  color: Theme.of(context).primaryColorLight,
                   elevation: 10,
                 ),
                 margin: EdgeInsets.only(top: 30, bottom: 30),

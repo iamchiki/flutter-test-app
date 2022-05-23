@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
   final Function(String)? inputChange;
-  String text = '';
+  final String text = '';
 
   SearchField(this.inputChange);
-  TextEditingController searchController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
   void clearInput() {
     searchController.clear();
   }
